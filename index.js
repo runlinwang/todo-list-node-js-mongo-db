@@ -24,7 +24,7 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
     // Dedicating the port number and telling app to listen to that port
     // Also logging that the server is up and running
-    app.listen(3000, () => console.log("Server up and running"));
+    app.listen(process.env.PORT || 3000, () => console.log("Server up and running"));
 });
 
 // setting up to link to the ejs files

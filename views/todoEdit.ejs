@@ -1,0 +1,53 @@
+<!-- This project was built following the tutorial at https://medium.com/@diogo.fg.pinheiro/simple-to-do-list-app-with-node-js-and-mongodb-chapter-2-3780a1c5b039 -->
+
+<!DOCTYPE html>
+<head>
+<title>Todo App</title>
+
+<!-- linking stylesheets -->
+<link rel="stylesheet" href="/static/stylesheets/style.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+<!-- The To Do Container is the first on the page, containing everything -->
+<div class="todo-container">
+<!-- The title -->
+<h2>To-Do List</h2>
+<div class="todo">
+<!-- Adding a form which takes a text input and uses the POST method. Button is used to submit it -->
+<form action="" method="POST" class="todo-header">
+<input type="text" name="content">
+<button type="submit"><span class="fas fa-plus"></span></button>
+</form>
+<!-- starting the actual todo list that appears -->
+<ul class="todo-list">
+<!-- Adding JS code directly for what to display for each task on the list -->
+<% todoTasks.forEach(details => { %>
+<!-- if the task is the one being edited-->
+<% if (details._id == idTask) { %>
+<li class="todo-list-item">
+<!-- Make it a form, with buttons to confirm and cancel -->
+<form action="/edit/<%= details._id %>" method="POST">
+<input type="text" value="<%= details.content %>" name="content">
+<button type="submit">Confirm</button>
+<a href="/" class="cancel">Cancel</a>
+</form>
+</li>
+<% } else { %>
+<!-- if the task is not the one being edited, display the list item in the same way as before -->
+<li class="todo-list-item">
+<div class="todo-list-item-name"><%= details.content %></div>
+<a href="/edit/<%= details._id %>" class="edit"> <span class="fas fa-edit"></span>
+</a>
+<a href="/remove/<%= details._id %>" class="remove"> <span class="fas fa-times"></span>
+</a>
+</li>
+<% } %>
+<% }) %>
+</ul>
+</div>
+</div>
+</body>

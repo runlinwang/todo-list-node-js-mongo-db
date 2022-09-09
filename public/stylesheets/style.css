@@ -1,0 +1,135 @@
+/* This project was built following the tutorial at https://medium.com/@diogo.fg.pinheiro/simple-to-do-list-app-with-node-js-and-mongodb-chapter-2-3780a1c5b039 */
+
+/* Standard page style settings */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+/* Setting the color the background */
+body {
+background: #1215b4;
+}
+
+/* Choosing the style of the input todo box */
+.todo-container {
+color: white;
+position: absolute;
+top:50%;
+left: 50%;
+padding: 20px;
+width: 600px;
+transform: translate(-50%,-50%);
+background: rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+/* setting the overall width of the todo element */
+.todo {
+width: 400px;
+}
+
+/* Choosing font settings for the headers in the todo container */
+.todo-container h2 {
+padding: 10px;
+font-family: 'Candal', sans-serif;
+font-size: 2em;
+}
+
+/* Choosing font settings and border settings for the input text */
+.todo-header input {
+width: 92%;
+border: none;
+border-radius: 5px;
+height: 20px;
+font-family: 'Candal', sans-serif;
+}
+
+/* Assigning style choices to the button used to add to list */
+.todo-header button {
+color: white;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+padding: 5px;
+font-family: 'Candal', sans-serif;
+background-color: rgb(51, 212, 100);
+}
+
+.todo-container ul {
+list-style: none;
+}
+
+/* setting the overall border, background, margin, and font settings for each todo list item */
+.todo-list-item {
+padding: 10px;
+margin-top: 10px;
+border: none;
+border-radius: 5px;
+font-family: 'Candal', sans-serif;
+background: rgba(0, 0, 0, 0.3);
+display: flex;
+flex-direction: row;
+}
+
+.todo-list-item form {
+width: 100%;
+display: flex;
+}
+
+/* style choices for input items of the list items */
+.todo-list-item input {
+flex-grow: 2;
+margin-right: 20px;
+border: none;
+border-radius: 5px;
+font-family: 'Candal', sans-serif;
+}
+
+/* style choices for the confirm button when editing */
+.todo-list-item button {
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+padding: 5px;
+font-family: 'Candal', sans-serif;
+background-color: rgb(51, 212, 100);
+}
+
+/* style choices for the cancel button, similar to the confirm button but with red background */
+.todo-list-item .cancel {
+color: white;
+text-decoration: none;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+padding: 5px;
+font-family: 'Candal', sans-serif;
+background-color: rgb(223, 43, 43);
+margin-left: 5px;
+}
+
+.todo-list-item div {
+flex-grow: 2;
+}
+
+/* setting the edit icon color and margins */
+.todo-list-item .edit {
+color : rgb(143, 233, 58);
+margin-right: 10px;
+cursor:pointer;
+text-decoration: none;
+}
+
+/* setting the remove / garbage bin icon color and margins */
+.todo-list-item .remove {
+color : rgb(243, 96, 96);
+margin-right: 5px;
+cursor:pointer;
+text-decoration: none;
+}

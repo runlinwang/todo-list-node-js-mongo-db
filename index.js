@@ -5,8 +5,9 @@ const express = require("express");
 const app = express();
 // requiring the dotenv file which contains our connection string
 const dotenv = require("dotenv");
+// requiring mongoose to make connection with the database
 const mongoose = require("mongoose");
-
+// requiring our model from TodoTask.js
 const TodoTask = require("./models/TodoTask");
 
 dotenv.config();
@@ -20,9 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 // deprecated, but included in tutorial
 // mongoose.set("useFindAndModify", false);
 
+// ensures that the server will only run after the connection is made
+// linking to the connection string DB_CONNECT here
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
-    // Dedicating the port number and telling app to listen to that port
+    // Setting port number to the dynamic PORT variable set by Heroku
+    // If not set, then dedicating the port number and telling app to listen to that port
     // Also logging that the server is up and running
     app.listen(process.env.PORT || 3000, () => console.log("Server up and running"));
 });
@@ -38,7 +42,7 @@ app.get("/", (req, res) => {
     });
 });
 
-// post method to send content to mongoDB
+// post method to send content to mongoDB, inserting data into the database
 app.post('/',async (req, res) => {
     const todoTask = new TodoTask({
         content: req.body.content
@@ -52,15 +56,18 @@ app.post('/',async (req, res) => {
 });
 
 
-//UPDATE
+// update method for editing
 app
     .route("/edit/:id")
+    // showing the todoEdit.ejs page when prompted by the edit button, 
+    // passing in the id of the list item
     .get((req, res) => {
         const id = req.params.id;
         TodoTask.find({}, (err, tasks) => {
             res.render("todoEdit.ejs", { todoTasks: tasks, idTask: id });
         });
     })
+    // sending the edited list item to the database
     .post((req, res) => {
         const id = req.params.id;
         TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
@@ -70,7 +77,7 @@ app
     });
 
 
-//DELETE
+// delete method, using findByIdAndRemove to identify the id that needs to be removed and taking it out of the database
 app.route("/remove/:id").get((req, res) => {
     const id = req.params.id;
     TodoTask.findByIdAndRemove(id, err => {

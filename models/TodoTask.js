@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 
+// making the collection schema of what data is required to be collected
 const todoTaskSchema = new mongoose.Schema({
     content: {
         type: String,
@@ -13,4 +14,5 @@ const todoTaskSchema = new mongoose.Schema({
     }
 });
 
+// exporting it for use in the index.js file
 module.exports = mongoose.model('TodoTask',todoTaskSchema);
